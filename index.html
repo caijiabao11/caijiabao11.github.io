@@ -1,30 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        html{
-            height: 100vh;
-            overflow: hidden;
-        }
-        body{
-            height: 100vh;
-            background-color: red;
-        }
-    </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Live2D 看板娘 v1.2 / Demo</title>
+  <link rel="stylesheet" type="text/css" href="live2dDemo-master\live2d\assets\waifu.css"/>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <h1>asdfgfsdaf</h1>
-    <iframe src="\live2dDemo-master\Samples\TypeScript\Demo\index.html" frameborder="0" height="100%" width="100%">
+  <a href="#" >啊啊啊啊</a>   
+  <div class="waifu">
+    <div class="waifu-tips"></div>
+    <canvas id="live2d" width="580" height="550" class="live2d"></canvas>
+    <div class="waifu-tool">
+        <span class="fui-home"></span>
+        <span class="fui-chat"></span>
+        <span class="fui-eye"></span>
+        <span class="fui-user"></span>
+        <span class="fui-photo"></span>
+        <span class="fui-info-circle"></span>
+        <span class="fui-cross"></span>
+    </div>
+</div>
+  <!-- Live2DCubismCore script -->
+<script src="https://cdn.jsdelivr.net/gh/caijiabao11/caijiabao11.github.io/live2dDemo-master/Core/live2dcubismcore.js"></script>
+  <!-- Build script --> 
+  <script src = "./live2dDemo-master/dist/meidou_live2d.js"></script>
+ 
 
-
-    </iframe>
+<script src="https://cdn.jsdelivr.net/gh/caijiabao11/caijiabao11.github.io/live2dDemo-master/Samples/TypeScript/Demo/live2d/assets/waifu-tips.js"></script>
+<script type="text/javascript">
+    //必选参数
+    let modulesPath = "./live2dDemo-master/live2d/models/"
+    let modelNames = ['Buzhizi']  //注意，这里的名字是存放你模型文件的主目录的名字，目录中的moc3.json文件的名字一定要与目录同名
+    //可选参数
+    let waifuTipsUrl = "./live2dDemo-master/live2d/assets/waifu-tips.json"
+    initModel(modulesPath,modelNames,waifuTipsUrl);
+  </script>
 </body>
 </html>
