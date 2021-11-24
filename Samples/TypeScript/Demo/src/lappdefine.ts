@@ -43,7 +43,7 @@ class ResourceConfig {
     public model_scale: number = 1;
     constructor() {
         this.resourcesPath = '../../Resources/';
-        this.modelNames = ['Haru', 'Hiyori', 'Mark', 'Natori', 'Rice'];
+        this.modelNames = ['Buzhizi', 'Haru'];
         this.modelSize = this.modelNames.length;
     }
 
