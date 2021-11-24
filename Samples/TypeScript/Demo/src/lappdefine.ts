@@ -16,8 +16,8 @@ export const CanvasSize: { width: number; height: number } | 'auto' = 'auto';
 
 // 画面
 export const ViewScale = 2;
-export const ViewMaxScale = 4.0;
-export const ViewMinScale = 0.4;
+export const ViewMaxScale = 6.0;
+export const ViewMinScale = 0.6;
 
 export const ViewLogicalLeft = -1.0;
 export const ViewLogicalRight = 1.0;
@@ -40,7 +40,7 @@ class ResourceConfig {
     public x_scale: number = 2;
     public y_scale: number = 1;
     //模型的缩放比例
-    public model_scale: number = 1;
+    public model_scale: number = 2;
     constructor() {
         this.resourcesPath = '../../Resources/';
         this.modelNames = ['Buzhizi', 'Haru'];

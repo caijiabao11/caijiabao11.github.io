@@ -37,7 +37,7 @@ export class CubismModelMatrix extends CubismMatrix44 {
   public setWidth(w: number): void {
     const scaleX: number = w / this._width;
     const scaleY: number = scaleX;
-    this.scale(scaleX, scaleY);
+    this.scale(scaleX*2, scaleY*2);
   }
 
   /**
@@ -47,7 +47,7 @@ export class CubismModelMatrix extends CubismMatrix44 {
   public setHeight(h: number): void {
     const scaleX: number = h / this._height;
     const scaleY: number = scaleX;
-    this.scale(scaleX, scaleY);
+    this.scale(scaleX*2, scaleY*2);
   }
 
   /**
@@ -57,7 +57,7 @@ export class CubismModelMatrix extends CubismMatrix44 {
    * @param y Y軸の位置
    */
   public setPosition(x: number, y: number): void {
-    this.translate(x, y);
+    this.translate(x, y-5000);
   }
 
   /**
@@ -121,7 +121,7 @@ export class CubismModelMatrix extends CubismMatrix44 {
   public centerX(x: number): void {
     const w = this._width * this.getScaleX();
 
-    this.translateX(x - w / 2.0);
+    this.translateX(x - w);
   }
 
   /**
@@ -141,7 +141,7 @@ export class CubismModelMatrix extends CubismMatrix44 {
   public centerY(y: number): void {
     const h: number = this._height * this.getScaleY();
 
-    this.translateY(y - h / 2.0);
+    this.translateY(y - h);
   }
 
   /**
