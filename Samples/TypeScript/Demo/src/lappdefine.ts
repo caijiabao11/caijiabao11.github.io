@@ -16,8 +16,8 @@ export const CanvasSize: { width: number; height: number } | 'auto' = 'auto';
 
 // 画面
 export const ViewScale = 2;
-export const ViewMaxScale = 6.0;
-export const ViewMinScale = 0.6;
+export const ViewMaxScale = 1.0;
+export const ViewMinScale = 0.1;
 
 export const ViewLogicalLeft = -1.0;
 export const ViewLogicalRight = 1.0;
@@ -37,10 +37,10 @@ class ResourceConfig {
     public modelSize: number;
     //显示live2d模型的canvas的id
     public canvasId: string = 'live2d';
-    public x_scale: number = 2;
-    public y_scale: number = 1;
+    public x_scale: number = 4;
+    public y_scale: number = 4;
     //模型的缩放比例
-    public model_scale: number = 2;
+    public model_scale: number = 4;
     constructor() {
         this.resourcesPath = '../../Resources/';
         this.modelNames = ['Buzhizi', 'Haru'];

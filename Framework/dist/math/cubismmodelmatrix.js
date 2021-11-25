@@ -70,7 +70,7 @@ var CubismModelMatrix = /** @class */ (function (_super) {
     CubismModelMatrix.prototype.setWidth = function (w) {
         var scaleX = w / this._width;
         var scaleY = scaleX;
-        this.scale(scaleX * 2, scaleY * 2);
+        this.scale(scaleX / 2, scaleY / 2);
     };
     /**
      * 縦幅を設定
@@ -79,7 +79,7 @@ var CubismModelMatrix = /** @class */ (function (_super) {
     CubismModelMatrix.prototype.setHeight = function (h) {
         var scaleX = h / this._height;
         var scaleY = scaleX;
-        this.scale(scaleX * 2, scaleY * 2);
+        this.scale(scaleX / 2, scaleY / 2);
     };
     /**
      * 位置を設定
@@ -88,7 +88,7 @@ var CubismModelMatrix = /** @class */ (function (_super) {
      * @param y Y軸の位置
      */
     CubismModelMatrix.prototype.setPosition = function (x, y) {
-        this.translate(x, y - 5000);
+        this.translate(x, y);
     };
     /**
      * 中心位置を設定
@@ -143,7 +143,7 @@ var CubismModelMatrix = /** @class */ (function (_super) {
      */
     CubismModelMatrix.prototype.centerX = function (x) {
         var w = this._width * this.getScaleX();
-        this.translateX(x - w);
+        this.translateX(x - w / 2.0);
     };
     /**
      * X軸の位置を設定
@@ -160,7 +160,7 @@ var CubismModelMatrix = /** @class */ (function (_super) {
      */
     CubismModelMatrix.prototype.centerY = function (y) {
         var h = this._height * this.getScaleY();
-        this.translateY(y - h);
+        this.translateY(y - h / 2.0);
     };
     /**
      * Y軸の位置を設定する
