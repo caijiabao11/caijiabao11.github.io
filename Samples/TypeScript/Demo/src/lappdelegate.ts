@@ -113,26 +113,23 @@ export class LAppDelegate {
       // console.log("onMouseMoved: gate文件中posY值为： 【"+posY+"】  canvas的top距离为："+rect.top);
       LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
     }, false);
+   
 
-
-    document.addEventListener("touchmove", function (e) {
+    //手机端触摸跟随
+    document.addEventListener("touchstart",function(e){Client(e)},false);
+    document.addEventListener("touchmove",function(e){Client(e)},false);
+    document.addEventListener("touchend",function(e){Client(e)},false);
+    function Client(e){
       if (!LAppDelegate.getInstance()._view) {
         LAppPal.printMessage("view notfound");
         return;
       }
-      
-      //(<Element>e.target).getBoundingClientRect();
-      //这里代码改了一点
-      //之前我是使用documents对象来获取canvas，其实已经有全局变量了，这里也可以直接用
       let rect = canvas.getBoundingClientRect();
       let posX: number = e.changedTouches[0].clientX - rect.left;
       let posY: number = e.changedTouches[0].clientY - rect.top;
-      // console.log("onMouseMoved: gate文件中posY值为： 【"+posY+"】  canvas的top距离为："+rect.top);
       LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
-    }, false);
-
-    // }
-
+    }
+    
     //在这里加上鼠标离开浏览器后，一切归位
     document.addEventListener("mouseout", function (e) {
       //鼠标离开document后，将其位置置为（0，0）  
