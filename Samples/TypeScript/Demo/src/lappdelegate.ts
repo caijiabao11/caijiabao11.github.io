@@ -125,7 +125,7 @@ export class LAppDelegate {
         LAppPal.printMessage("view notfound");
         return;
       }
-      console.log('asd')
+      
       let rect = canvas.getBoundingClientRect();
       let posX: number = e.changedTouches[0].clientX - rect.left;
       let posY: number = e.changedTouches[0].clientY - rect.top;
@@ -133,7 +133,7 @@ export class LAppDelegate {
     }
 
     //在这里加上鼠标离开浏览器后，一切归位
-    document.addEventListener("mouseout", function (e) {
+    document.addEventListener("touchend", function (e) {
       //鼠标离开document后，将其位置置为（0，0）  
       let live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
       live2DManager.onDrag(0.0, 0.0);
