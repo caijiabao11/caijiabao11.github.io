@@ -115,6 +115,7 @@ export class LAppDelegate {
     }, false);
    
 
+
     //手机端触摸跟随
     document.addEventListener("touchstart",function(e){Client(e)},false);
     document.addEventListener("touchmove",function(e){Client(e)},false);
@@ -124,12 +125,13 @@ export class LAppDelegate {
         LAppPal.printMessage("view notfound");
         return;
       }
+      console.log('asd')
       let rect = canvas.getBoundingClientRect();
       let posX: number = e.changedTouches[0].clientX - rect.left;
       let posY: number = e.changedTouches[0].clientY - rect.top;
       LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
     }
-    
+
     //在这里加上鼠标离开浏览器后，一切归位
     document.addEventListener("mouseout", function (e) {
       //鼠标离开document后，将其位置置为（0，0）  
