@@ -80,18 +80,18 @@ export class LAppDelegate {
     // 透過設定
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-/*
+
     const supportTouch: boolean = 'ontouchend' in document;
 
-     if (supportTouch) {
+    //  if (supportTouch) {
     // タッチ関連コールバック関数登録
-    document.ontouchstart = onTouchBegan;
-     document.ontouchmove = onTouchMoved;
-     document.ontouchend = onTouchEnded;
+    // document.ontouchstart = onTouchBegan;
+    //  document.ontouchmove = onTouchMoved;
+    //  document.ontouchend = onTouchEnded;
     //document.ontouchend = onTouchEnded;
     //canvas.ontouchcancel = onTouchCancel;
-     } else {
-       */
+    //  } else {
+      
     
     // マウス関連コールバック関数登録
     //只能在canvas的事件上调用on*Ended()方法，不然会影响人物的点击效果
@@ -114,17 +114,12 @@ export class LAppDelegate {
       LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
     }, false);
    
-
-
-    //手机端触摸跟随
-    document.addEventListener("touchstart",function(e){Client(e)},false);
-    document.addEventListener("touchmove",function(e){Client(e)},false);
-    document.addEventListener("touchend",function(e){Client(e)},false);
-    function Client(e){
+   function Client(e){
       if (!LAppDelegate.getInstance()._view) {
         LAppPal.printMessage("view notfound");
         return;
       }
+      LAppLive2DManager.getInstance().onDrag(0.0, 0.0);
       
       let rect = canvas.getBoundingClientRect();
       let posX: number = e.changedTouches[0].clientX - rect.left;
@@ -132,11 +127,18 @@ export class LAppDelegate {
       LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
     }
 
+    //手机端触摸跟随
+    document.addEventListener("touchstart",function(e){Client(e);console.log('touchstart1')},false);
+    document.addEventListener("touchmove",function(e){Client(e)},false);
+    
+ 
+
     //在这里加上鼠标离开浏览器后，一切归位
     document.addEventListener("touchend", function (e) {
       //鼠标离开document后，将其位置置为（0，0）  
       let live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
       live2DManager.onDrag(0.0, 0.0);
+      console.log('end')
     }, false);
 
     // AppViewの初期化

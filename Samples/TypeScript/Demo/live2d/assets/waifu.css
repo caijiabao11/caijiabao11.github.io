@@ -26,12 +26,14 @@
     padding: 5px 10px;
     border: 1px solid rgba(175, 150, 120, 0.62);
     border-radius: 12px;
-    background-color: rgba(236, 217, 188, 0.5);
+    background-color: rgba(236, 217, 188, 0.9);
     box-shadow: 0 3px 15px 2px rgba(191, 158, 118, 0.2);
     font-size: 34px;
     text-overflow: ellipsis;
     overflow: hidden;
     position: absolute;
+    bottom: 70px;
+    z-index: 999;
     animation-delay: 5s;
     animation-duration: 50s;
     animation-iteration-count: infinite;
@@ -61,6 +63,7 @@
 }
 .waifu #live2d{
     position: relative;
+    top: 300px;
 }
 
 @keyframes shake {

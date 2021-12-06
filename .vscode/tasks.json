@@ -1,7 +1,6 @@
 {
   "version": "2.0.0",
   "tasks": [
-    // Tasks for Samples/TypeScript/Demo
     {
       "type": "npm",
       "script": "install",
@@ -56,7 +55,6 @@
       "path": "Samples/TypeScript/Demo/",
       "problemMatcher": []
     },
-    // Tasks for Framework
     {
       "type": "npm",
       "script": "install",
@@ -96,6 +94,16 @@
       "script": "clear",
       "path": "Framework/",
       "problemMatcher": []
+    },
+    {
+      "type": "typescript",
+      "tsconfig": "Samples/TypeScript/Demo/tsconfig.json",
+      "option": "watch",
+      "problemMatcher": [
+        "$tsc-watch"
+      ],
+      "group": "build",
+      "label": "tsc: 监视 - Samples/TypeScript/Demo/tsconfig.json"
     }
   ]
 }
