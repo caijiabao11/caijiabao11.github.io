@@ -64,7 +64,7 @@ export class LAppView {
       const screenH: number = Math.abs(top - bottom);
       this._deviceToScreen.scaleRelative(screenH / height, -screenH / height);
     }
-    this._deviceToScreen.translateRelative(-width*0.5, -height * 0.5);
+    this._deviceToScreen.translateRelative(-width/2, -height/2);
 
     // 表示範囲の設定
     this._viewMatrix.setMaxScale(LAppDefine.ViewMaxScale); // 限界拡張率
@@ -164,7 +164,7 @@ export class LAppView {
   public onTouchesEnded(pointX: number, pointY: number): void {
     // タッチ終了
     const live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
-    //live2DManager.onDrag(0.0, 0.0);
+    // live2DManager.onDrag(0.0, 0.0);
 
     {
       // シングルタップ

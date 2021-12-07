@@ -480,11 +480,11 @@ export class LAppModel extends CubismUserModel {
 
     // ドラッグによる変化
     // ドラッグによる顔の向きの調整
-    this._model.addParameterValueById(this._idParamAngleX, this._dragX * 30); // -30から30の値を加える
-    this._model.addParameterValueById(this._idParamAngleY, this._dragY * 30);
+    this._model.addParameterValueById(this._idParamAngleX, this._dragX * 20); // -30から30の値を加える
+    this._model.addParameterValueById(this._idParamAngleY, this._dragY * 20);
     this._model.addParameterValueById(
       this._idParamAngleZ,
-      this._dragX * this._dragY * -30
+      this._dragX * this._dragY * -20
     );
 
     // ドラッグによる体の向きの調整

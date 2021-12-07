@@ -108,38 +108,65 @@ export class LAppDelegate {
       //这里代码改了一点
       //之前我是使用documents对象来获取canvas，其实已经有全局变量了，这里也可以直接用
       let rect = canvas.getBoundingClientRect();
-      let posX: number = e.clientX - rect.left;
-      let posY: number = e.clientY - rect.top;
+      let posX: number = (e.clientX - rect.left)*2;
+      let posY: number = (e.clientY - rect.top)*2;
       // console.log("onMouseMoved: gate文件中posY值为： 【"+posY+"】  canvas的top距离为："+rect.top);
       LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
     }, false);
    
-   function Client(e){
+    function Client(e,a){
       if (!LAppDelegate.getInstance()._view) {
         LAppPal.printMessage("view notfound");
         return;
       }
-      LAppLive2DManager.getInstance().onDrag(0.0, 0.0);
       
       let rect = canvas.getBoundingClientRect();
-      let posX: number = e.changedTouches[0].clientX - rect.left;
-      let posY: number = e.changedTouches[0].clientY - rect.top;
-      LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
-    }
+      //top+300=眼睛高度
+      var posY: number ;
+      var posX: number ;
+
+      //====================================================================================
+      //
+      //
+      //单击与触摸方向数值
+      //
+
+      if(e.changedTouches[0].clientX <= rect.width / 2 + 100 && e.changedTouches[0].clientX >= rect.width / 2 - 100){
+        var posX: number = (e.changedTouches[0].clientX - rect.width / 2) * 2 + rect.width;
+      }else if(e.changedTouches[0].clientX < rect.width / 2 - 100){
+        var posX: number = (e.changedTouches[0].clientX - rect.width / 2) * 2 + (rect.width / 2) * -2;
+      }else if(e.changedTouches[0].clientX > rect.width / 2 + 100){
+        var posX: number = (e.changedTouches[0].clientX - rect.width / 2) * 2 + rect.width * 2;
+      }
+      if(e.changedTouches[0].clientY <= rect.top + 500 && e.changedTouches[0].clientY >= rect.top + 300){
+        var posY: number = (e.changedTouches[0].clientY - (rect.top + 400)) * 4;
+      }else if(e.changedTouches[0].clientY < rect.top + 500){
+        var posY: number = (e.changedTouches[0].clientY - rect.top+500) * 2 + (rect.top +500) * -2;
+      }else if(e.changedTouches[0].clientY > rect.top + 300){
+        var posY: number = (e.changedTouches[0].clientY - rect.top+300) * 2 + rect.top;
+      }
+      if(a==1){
+        LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
+      }else if(a==2){
+        LAppDelegate.getInstance()._view.onTouchesBegan(posX, posY);
+      }
+    }   
 
     //手机端触摸跟随
-    document.addEventListener("touchstart",function(e){Client(e);console.log('touchstart1')},false);
-    document.addEventListener("touchmove",function(e){Client(e)},false);
-    
- 
+    document.addEventListener("touchstart",function(e){Client(e,2);},false);
+    document.addEventListener("touchmove",function(e){Client(e,1)},false);
 
-    //在这里加上鼠标离开浏览器后，一切归位
+       //在这里加上鼠标离开浏览器后，一切归位
     document.addEventListener("touchend", function (e) {
-      //鼠标离开document后，将其位置置为（0，0）  
+      if(!LAppDelegate.getInstance()._captured){
+    //鼠标离开document后，将其位置置为（0，0）  
       let live2DManager: LAppLive2DManager = LAppLive2DManager.getInstance();
       live2DManager.onDrag(0.0, 0.0);
       console.log('end')
+      }
     }, false);
+    
+   
 
     // AppViewの初期化
     this._view.initialize();
@@ -340,7 +367,7 @@ export class LAppDelegate {
 }
 
 /**
- * クリックしたときに呼ばれる。
+ * 点击后调用。
  */
 function onClickBegan(e: MouseEvent): void {
   if (!LAppDelegate.getInstance()._view) {
@@ -356,7 +383,7 @@ function onClickBegan(e: MouseEvent): void {
 }
 
 /**
- * マウスポインタが動いたら呼ばれる。
+ * 鼠标指针一移动就调用。
  */
 function onMouseMoved(e: MouseEvent): void {
   if (!LAppDelegate.getInstance()._captured) {
@@ -376,7 +403,7 @@ function onMouseMoved(e: MouseEvent): void {
 }
 
 /**
- * クリックが終了したら呼ばれる。
+ * 点击结束后被调用。
  */
 function onClickEnded(e: MouseEvent): void {
   LAppDelegate.getInstance()._captured = false;
@@ -393,7 +420,7 @@ function onClickEnded(e: MouseEvent): void {
 }
 
 /**
- * タッチしたときに呼ばれる。
+ * 触摸的时候调用。
  */
 function onTouchBegan(e: TouchEvent): void {
   if (!LAppDelegate.getInstance()._view) {
@@ -410,7 +437,7 @@ function onTouchBegan(e: TouchEvent): void {
 }
 
 /**
- * スワイプすると呼ばれる。
+ * 触摸时调用。
  */
 function onTouchMoved(e: TouchEvent): void {
   if (!LAppDelegate.getInstance()._captured) {
@@ -431,7 +458,7 @@ function onTouchMoved(e: TouchEvent): void {
 }
 
 /**
- * タッチが終了したら呼ばれる。
+ * 触摸结束后调用。
  */
 function onTouchEnded(e: TouchEvent): void {
   LAppDelegate.getInstance()._captured = false;
@@ -450,7 +477,7 @@ function onTouchEnded(e: TouchEvent): void {
 }
 
 /**
- * タッチがキャンセルされると呼ばれる。
+ * 触摸被取消时。
  */
 function onTouchCancel(e: TouchEvent): void {
   LAppDelegate.getInstance()._captured = false;

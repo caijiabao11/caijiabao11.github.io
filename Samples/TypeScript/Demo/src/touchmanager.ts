@@ -56,10 +56,12 @@ export class TouchManager {
   }
 
   public getX(): number {
+    console.log('_lastX'+this._lastX)
     return this._lastX;
   }
 
   public getY(): number {
+    console.log('_lastY'+this._lastY)
     return this._lastY;
   }
 
@@ -170,18 +172,18 @@ export class TouchManager {
     );
   }
 
-  _startY: number; // タッチを開始した時のxの値
-  _startX: number; // タッチを開始した時のyの値
-  _lastX: number; // シングルタッチ時のxの値
-  _lastY: number; // シングルタッチ時のyの値
-  _lastX1: number; // ダブルタッチ時の一つ目のxの値
-  _lastY1: number; // ダブルタッチ時の一つ目のyの値
-  _lastX2: number; // ダブルタッチ時の二つ目のxの値
-  _lastY2: number; // ダブルタッチ時の二つ目のyの値
-  _lastTouchDistance: number; // 2本以上でタッチしたときの指の距離
-  _deltaX: number; // 前回の値から今回の値へのxの移動距離。
-  _deltaY: number; // 前回の値から今回の値へのyの移動距離。
-  _scale: number; // このフレームで掛け合わせる拡大率。拡大操作中以外は1。
-  _touchSingle: boolean; // シングルタッチ時はtrue
-  _flipAvailable: boolean; // フリップが有効かどうか
+  _startY: number; // 开始触摸时的x值
+  _startX: number; // 开始触摸时的y值
+  _lastX: number; // 单击时的x的值
+  _lastY: number; // 单击时的y的值
+  _lastX1: number; // 双击时第一个x的值
+  _lastY1: number; // 双击时第一个y的值
+  _lastX2: number; // 双触时的第二个x的值
+  _lastY2: number; // 双触时的第二个y的值
+  _lastTouchDistance: number; // 用2根以上触摸时手指的距离
+  _deltaX: number; // 从上次数值到这次值的x的移动距离
+  _deltaY: number; // 从上次数值到这次值的y的移动距离。
+  _scale: number; // 以此框架相乘的放大率。放大操作中以外为1。
+  _touchSingle: boolean; // 单击时为true
+  _flipAvailable: boolean; // 触发是否有效
 }
